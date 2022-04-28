@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://kit.fontawesome.com/b20687152d.js" crossorigin="anonymous"></script>
+  <title>Vite App</title>
+</head>
+<body>
+  <div class="main">
+    <h1 class="main__title">Todo List</h1>
+    <div class="main__input-todo">
+      <input type="text" value="" placeholder="What do you need ?" class="input-text" required>
+      <button class="add-item">
+        <i class="fa-regular fa-plus"></i>
+      </button>
+    </div>
+    <div class="main__filtrs">
+      <input type="radio" name="filtr" class="filtr-all" checked>All
+      <input type="radio" name="filtr" class="filtr-todo">Todo
+      <input type="radio" name="filtr" class="filtr-done">Done
+    </div>
+  </div>
+  <div class="todo">
+    <ul class="todo__list"></ul>
+  </div>
+  <script type="module" src="/main.js"></script>
+</body>
+</html>
