@@ -3,9 +3,7 @@ import './style/reset.css'
 import $ from 'jquery'
 import { v4 as uuidv4 } from 'uuid'
 
-const inputText = $('.input-text')
 const buttonAddTodo = $('.add-item')
-const todoList = $('.todo__list')
 const filtrAll = $('.filtr-all')
 const filtrTodo = $('.filtr-todo')
 const filtrDone = $('.filtr-done')
@@ -23,15 +21,13 @@ export const createNewTodo = text => {
 }
 
 export const addTodo = () => {
-    if (inputText.val() === '') {
-        alert('Please write any text')
+    const inputText = $('.input-text')
 
-        return
-    }
+    if (inputText.val() === '') return
 
     const newTodo = createNewTodo(inputText.val())
 
-    newTodo.appendTo(todoList)
+    newTodo.appendTo($('.todo__list'))
     createTodoControls(newTodo)
 
     todoMap.set(newTodo.attr('data-id'), {
@@ -44,13 +40,13 @@ export const addTodo = () => {
 
 buttonAddTodo.click(addTodo)
 
-inputText.keyup(event => {
+$('.input-text').keyup(event => {
     if (event.keyCode === 13) {
         addTodo()
     }
 })
 
-export const createTodoControls = todoItem => {
+const createTodoControls = todoItem => {
     const allButton = $('<div>', { class: 'todo__item-all-button' })
         .appendTo(todoItem)
     const acceptedButton = $('<button>', { class: 'todo__item-accepted' })
@@ -121,7 +117,7 @@ export const createTodoControls = todoItem => {
     })
 }
 
-export const filters = () => {
+const filters = () => {
     filtrAll.click(() => {
         $('.todo__item').show(500)
     })

@@ -1,11 +1,11 @@
+import {
+  addTodo,
+  createNewTodo,
+  todoMap,
+} from '../main'
 import $ from 'jquery'
-import {addTodo, createNewTodo, createTodoControls, todoMap } from '../main'
-
 
 describe('add todo to list', () => {
-  const text = 'test'
-  const todoNode = createNewTodo(text)
-
   beforeEach(() => {
     $(document.body).append(`
         <input type="text" value="" placeholder="What do you need ?" class="input-text" required></input>
@@ -17,24 +17,23 @@ describe('add todo to list', () => {
         </div>
     `)
   })
-
   afterEach(() => {
     $(document.body).empty()
   })
 
   test('add Todo', () => {
+    const text = 'test'
+    const todoNode = createNewTodo(text)
+
     expect($(todoNode).text()).toBe(text)
     expect($(todoNode).attr('data-id')).toBeTruthy()
     expect($(todoNode).hasClass('todo__item')).toBeTruthy()
   })
 
   test('add todo to Map Object', () => {
-    $(todoNode).appendTo($('.todo__list'))
-    
-    todoMap.set(todoNode.attr('data-id'), {
-      isDone: false,
-      text: text
-    })
+    $('.input-text').val('test')
+
+    addTodo()
 
     const id = $('li:last-child').attr('data-id')
     const todo = todoMap.get(id)
@@ -42,30 +41,26 @@ describe('add todo to list', () => {
     expect(todoMap.size).toBe(1)
     expect(todoMap.has(id)).toBeTruthy()
     expect(todo.isDone).toBe(false)
-    expect(todo.text).toBe(text)
+    expect(todo.text).toBe('test')
   })
 
   test('delete Todo', () => {
-    $(todoNode).appendTo($('.todo__list'))
+    $('.input-text').val('test1')
 
-    createTodoControls(todoNode)
+    addTodo()
 
     $('.todo__item-deleted').click()
 
-    expect(todoMap.size).toBe(0)
+    expect(todoMap.size).toBe(1)
     expect($('.todo__list').text()).not.toBe($('.todo__item'))
   })
 
   test('check todo', () => {
-    $(todoNode).appendTo($('.todo__list'))
-    todoMap.set(todoNode.attr('data-id'), {
-      isDone: false,
-      text: text
-    })
+    $('.input-text').val('test2')
 
-    createTodoControls(todoNode)
+    addTodo()
 
-    expect(todoMap.size).toBe(1)
+    expect(todoMap.size).toBe(2)
 
     const id = $('li:last-child').attr('data-id')
 
@@ -77,5 +72,5 @@ describe('add todo to list', () => {
 
     expect(todoMap.get(id).isDone).toBe(false)
   })
-})
 
+})
