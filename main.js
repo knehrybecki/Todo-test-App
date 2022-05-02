@@ -23,7 +23,9 @@ export const createNewTodo = text => {
 export const addTodo = () => {
     const inputText = $('.input-text')
 
-    if (inputText.val() === '') return
+    if (inputText.val() === '') {
+        return
+    }
 
     const newTodo = createNewTodo(inputText.val())
 
