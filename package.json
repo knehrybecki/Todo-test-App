@@ -1,0 +1,38 @@
+{
+  "name": "todo-vite",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "test": "jest",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      ".+\\.(css|styl|sass|scss)$": "identity-obj-proxy"
+    },
+    "setupFiles": [
+      "<rootDir>/tests/jest-preset.js"
+    ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.9",
+    "@babel/preset-env": "^7.16.11",
+    "babel-jest": "^28.0.1",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^28.0.1",
+    "jsdom": "^19.0.0",
+    "sass": "^1.51.0",
+    "vite": "^2.9.6"
+  },
+  "main": "main.js",
+  "dependencies": {
+    "jquery": "^3.6.0",
+    "uuid": "^8.3.2"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
